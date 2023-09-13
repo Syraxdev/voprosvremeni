@@ -34,11 +34,25 @@ const columns = [
     width: 250,
     headerName: 'Average item level',
     field: 'averageItemLevel',
+    renderCell: (params) => {
+      const val = params.value.split('.')
+      const wholePart = val?.[0]
+      const fractionPart = val?.[1]?.[0]
+      const res = fractionPart ? `${wholePart}.${fractionPart}` : `${wholePart}.0`
+      return res;
+    }
   },
   {
     width: 250,
     headerName: 'Duration',
     field: 'duration',
+    renderCell: (params) => {
+      const timestamp = params.value.split('.')[0]
+      const minutes = Math.floor(timestamp / 60)
+      const seconds = timestamp % 60
+      const formatedSeconds = String(seconds).length <= 1 ? `0${seconds}` : seconds
+      return `${minutes}:${formatedSeconds}`
+    }
   },
   {
     width: 250,
@@ -70,7 +84,6 @@ const App = () => {
     fetchParseData()
   }, [])
 
-  // const shortData = parsedData.slice(1, 10)
   const fullData = parsedData.slice(1)
 
   const formatedData = fullData.map((row) => {
