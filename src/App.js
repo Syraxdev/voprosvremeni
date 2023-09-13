@@ -15,21 +15,21 @@ const columns = [
     headerName: 'Encounter name',
     field: 'encounterName',
   },
-  // {
-  //   width: 250,
-  //   headerName: 'Difficulty',
-  //   field: 'difficulty',
-  // },
-  // {
-  //   width: 250,
-  //   headerName: 'Size',
-  //   field: 'size',
-  // },
-  // {
-  //   width: 250,
-  //   headerName: 'Kill',
-  //   field: 'kill',
-  // },
+  {
+    width: 250,
+    headerName: 'Difficulty',
+    field: 'difficulty',
+  },
+  {
+    width: 250,
+    headerName: 'Size',
+    field: 'size',
+  },
+  {
+    width: 250,
+    headerName: 'Kill',
+    field: 'kill',
+  },
   {
     width: 250,
     headerName: 'Average item level',
@@ -100,6 +100,15 @@ const App = () => {
           <DataGrid
             rows={rows}
             columns={columns}
+            initialState={{
+              columns: {
+                columnVisibilityModel: {
+                  difficulty: false,
+                  size: false,
+                  kill: false,
+                },
+              },
+            }}
             disableRowSelectionOnClick
           />
         </Box>
