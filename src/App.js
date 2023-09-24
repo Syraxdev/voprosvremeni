@@ -9,6 +9,31 @@ import { Container } from "./styled";
 
 import CSVData from './data.csv'
 
+// 0 - "logID"
+// 1 - "starTimeLog"
+// 2 - "endTimeLog"
+// 3 - "logNote_2"
+// 4 - "X"
+// 5 - "encounterID"
+// 6 - "difficulty"
+// 7 - "hardModeLevel"
+// 8 - "averageItemLevel"
+// 9 - "size"
+// 10 - "kill"
+// 11 - "lastPhase"
+// 12 - "startTime"
+// 13 - "endTime"
+// 14 - "fightPercentage"
+// 15 - "bossPercentage"
+// 16 - "completeRaid"
+// 17 - "fightID"
+// 18 - "duration"
+// 19 - "duration_s"
+// 20 - "encounterName"
+// 21 - "encounterNameColor"
+// 22 - "exclude"
+// 23 - "duration_s_filter"
+
 const columns = [
   {
     width: 250,
@@ -88,18 +113,20 @@ const App = () => {
 
   const formatedData = fullData.map((row) => {
     return ({
-      id: row[1],
-      encounterName: row[18],
-      difficulty: row[3],
-      size: row[6],
-      kill: row[7],
-      averageItemLevel: row[5],
-      duration: row[16],
-      logID: row[17]
+      id: row[4],
+      encounterName: row[20],
+      logNote_2: row[3],
+      difficulty: row[6],
+      size: row[9],
+      kill: row[10],
+      averageItemLevel: row[8],
+      duration: row[19],
+      logID: row[0],
     })
   })
 
   const rows = formatedData.filter((item) => {
+    // return item;
     if (item.size === '25' && item.difficulty === 'Hard' && item.kill === 'TRUE') {
       return item;
     }
